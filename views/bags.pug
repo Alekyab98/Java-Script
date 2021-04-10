@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - let result=[{Name:"Hand bags",Brand:"Coach",Price:400},{Name:"bum bags",Brand:"Guess",Price:250},{Name:"Backpack",Brand:"Gucci",Price:2000}] 
+  - let result=results  
   div(class="container-fluid")
   div(class="row")
     each form,index in result

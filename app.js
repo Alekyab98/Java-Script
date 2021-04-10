@@ -3,13 +3,39 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const connectionString =process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString, 
+  {useNewUrlParser: true, useUnifiedTopology: true});
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var bagsRouter = require('./routes/bags');
 var starsRouter = require('./routes/stars');
 var slotRouter = require('./routes/slot');
-
+var bag= require("./models/bag");
+var resourceRouter = require('./routes/resource');
+// We can seed the collection if needed on server start
+async function recreateDB() {
+  // Delete everything
+  await bag.deleteMany();
+  let instance1 = new bag({Name:"Hand bags",Brand:"Coach",Price:400});
+  instance1.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("First object saved")
+  });
+  let instance2 = new bag({Name:"bum bags",Brand:"Guess",Price:250});
+  instance2.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("Second object saved")
+  });
+  let instance3 = new bag({Name:"Backpack",Brand:"Gucci",Price:2000 });
+  instance3.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("Third object saved")
+  });
+}
+let reseed = true;
+if (reseed) { recreateDB(); }
 
 var app = express();
 
@@ -28,6 +54,7 @@ app.use('/users', usersRouter);
 app.use('/bags', bagsRouter);
 app.use('/stars', starsRouter);
 app.use('/slot', slotRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,5 +71,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+var db = mongoose.connection;
+//Bind connection to error event 
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function(){
+  console.log("Connection to DB succeeded");
+});
 module.exports = app;
