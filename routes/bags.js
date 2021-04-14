@@ -12,7 +12,4 @@ router.get('/create', bag_controlers.bag_create_Page);
 router.get('/update', bag_controlers.bag_update_Page);
 /* GET create bag page */
 router.get('/delete', bag_controlers.bag_delete_Page);
-
-
-
 module.exports = router;

@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1= title
+  h1(id='listtitle')= title
 
   - let bagid = toShow._id
   - let bagName = toShow.Name
@@ -10,14 +10,14 @@ block content
   div
     div.row
       div(class='bagAttr mr-3') bag ID is:
-      div #{bagid}
+      div(class='listitems specific') #{bagid}
     div.row
       div(class='bagAttr mr-3') bag Name is:
-      div #{bagName}
+      div(class="listitems") #{bagName}
     div.row
       div(class='bagAttr mr-3') bag Brand is:
-      div #{bagBrand}
+      div(class="listitems") #{bagBrand}
     div.row
       div(class='bagAttr mr-3') bag Price is:
-      div #{bagPrice}
+      div(class="listitems") #{bagPrice}
 
