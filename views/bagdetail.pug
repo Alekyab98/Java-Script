@@ -2,22 +2,23 @@ extends layout
 
 block content
   h1(id='listtitle')= title
-
-  - let bagid = toShow._id
-  - let bagName = toShow.Name
-  - let bagBrand = toShow.Brand
-  - let bagPrice = toShow.Price
-  div
-    div.row
-      div(class='bagAttr mr-3') bag ID is:
-      div(class='listitems specific') #{bagid}
-    div.row
-      div(class='bagAttr mr-3') bag Name is:
-      div(class="listitems") #{bagName}
-    div.row
-      div(class='bagAttr mr-3') bag Brand is:
-      div(class="listitems") #{bagBrand}
-    div.row
-      div(class='bagAttr mr-3') bag Price is:
-      div(class="listitems") #{bagPrice}
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let bagid = toShow._id
+    - let bagName = toShow.Name
+    - let bagBrand = toShow.Brand
+    div
+      div.row
+        div(class='bagAttr mr-3') bag ID is:
+        div(class='listitems specific') #{bagid}
+      div.row
+        div(class='bagAttr mr-3') bag Name is:
+        div(class="listitems") #{bagName}
+      div.row
+        div(class='bagAttr mr-3') bag Brand is:
+        div(class="listitems") #{bagBrand}
+      div.row
+        div(class='bagAttr mr-3') bag Price is:
+        div(class="listitems") #{bagPrice}
 
