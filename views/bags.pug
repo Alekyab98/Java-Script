@@ -6,7 +6,7 @@ block content
   div(class="container-fluid")
   div(class="row m-1")
     each bag,index in bags
-      - let destination = `dispatch(\"/bag/update?id=${bag._id}\")`
+      - let destination = `dispatch(\"/bags/update?id=${bag._id}\")`
         div(class="col-sm-4  m-1" style=("font-weight:bolder")) #{bag.Name} - #{bag.Brand} - #{bag.Price} 
           button.btn( class="btn-primary ml-1", onclick= destination) Update
   script.
