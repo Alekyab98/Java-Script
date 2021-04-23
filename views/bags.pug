@@ -3,12 +3,18 @@ extends layout
 block content
   h1= title
   - let bags=results  
+  - let destinationcreate = `dispatchCreate(\"/bags/create\")`
   div(class="container-fluid")
+    button.btn( class="btn-info ml-1 btn-lg", onclick= destinationcreate) Create
   div(class="row m-1")
     each bag,index in bags
-      - let destination = `dispatch(\"/bags/update?id=${bag._id}\")`
+      - let destinationupdate = `dispatch(\"/bags/update?id=${bag._id}\")`
+      -let destinationdetail =   `dispatch(\"/bags/detail?id=${bag._id}\")`
+      - let destinationdelete = `dispatchDelete(\"/bags/delete?id=${bag._id}\")`
         div(class="col-sm-4  m-1" style=("font-weight:bolder")) #{bag.Name} - #{bag.Brand} - #{bag.Price} 
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-warning ml-1", onclick= destinationdetail) Detail
+          button.btn( class="btn-info ml-1", onclick= destinationupdate) Update
+          button.btn( class="btn-danger ml-1", onclick= destinationdelete) Delete
   script.
       function dispatch(path){
       window.location.href=path
@@ -16,5 +22,11 @@ block content
       function buy(itemNo)
       {
         alert(`You purchased Item ${itemNo+1}`)
+      }
+      function dispatchCreate(path){
+        window.location.href=path
+      }
+      function dispatchDelete(path){
+        window.location.href=path
       }
   

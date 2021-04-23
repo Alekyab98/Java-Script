@@ -38,12 +38,12 @@ async function recreateDB() {
     if (err) return console.error(err);
     console.log("First object saved")
   });
-  let instance2 = new bag({Name:"bum bags",Brand:"Guess",Price:250});
+  let instance2 = new bag({Name:"bum bags",Brand:"Guess",Price:1050});
   instance2.save(function (err, doc) {
     if (err) return console.error(err);
     console.log("Second object saved")
   });
-  let instance3 = new bag({Name:"Backpack",Brand:"Gucci",Price:2000 });
+  let instance3 = new bag({Name:"Backpack",Brand:"Gucci",Price:300 });
   instance3.save(function (err, doc) {
     if (err) return console.error(err);
     console.log("Third object saved")
